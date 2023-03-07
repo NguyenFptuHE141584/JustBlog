@@ -1,0 +1,85 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using FA.JustBlog.ViewModels.Posts
+
+@model IPagedList<PostViewModel>
+@{
+    ViewBag.Title = "Manage Post";
+    var message = TempData["Message"] as string;
+}
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-success">@message</div>
+}
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<br />
+<p>
+    @using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+    {
+        <input type="text" name="search" placeholder="Search Title ... " />
+        <input type="submit" name="submit" value="Search" />
+
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ShortDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().UrlSlug)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Published)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Modified)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <h2>No Records Found!</h2>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShortDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UrlSlug)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Published)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modified)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+@Html.PagedListPager(Model, i => Url.Action("Index", "Posts", new { i, search = Request.QueryString["search"] }))

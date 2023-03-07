@@ -1,0 +1,6 @@
+D:\Project\NWEB_NguyenNH7_MockProject\FA.JustBlog\FA.JustBlog.Common\bin\Debug\FA.JustBlog.Common.dll
+D:\Project\NWEB_NguyenNH7_MockProject\FA.JustBlog\FA.JustBlog.Common\bin\Debug\FA.JustBlog.Common.pdb
+D:\Project\NWEB_NguyenNH7_MockProject\FA.JustBlog\FA.JustBlog.Common\obj\Debug\FA.JustBlog.Common.csproj.AssemblyReference.cache
+D:\Project\NWEB_NguyenNH7_MockProject\FA.JustBlog\FA.JustBlog.Common\obj\Debug\FA.JustBlog.Common.csproj.CoreCompileInputs.cache
+D:\Project\NWEB_NguyenNH7_MockProject\FA.JustBlog\FA.JustBlog.Common\obj\Debug\FA.JustBlog.Common.dll
+D:\Project\NWEB_NguyenNH7_MockProject\FA.JustBlog\FA.JustBlog.Common\obj\Debug\FA.JustBlog.Common.pdb

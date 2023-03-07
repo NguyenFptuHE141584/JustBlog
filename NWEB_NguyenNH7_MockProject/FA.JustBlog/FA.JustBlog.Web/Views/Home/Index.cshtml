@@ -1,0 +1,43 @@
+﻿@using FA.JustBlog.ViewModels.Posts
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<PostViewModel>
+@{
+    ViewBag.Title = "Home Page";
+
+}
+<p>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <div class="input-group mb-3">
+            <input type="search" name="search" class="form-control" placeholder="Search Title ...">
+            <button class="btn btn-outline-secondary" type="submit" name="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    }
+</p>
+
+@foreach (var post in Model)
+{
+    var url = $"/Post/GetPostByTitle/{post.UrlSlug}";
+    <div>
+        <h2><a href="@url">@post.Title</a></h2>
+        <small style="color:red">Published:</small>
+        <small>@post.Published</small>
+        <br />
+        <small style="color:red">Modified:</small>
+        <small>@post.Modified</small>
+        <p>@post.ShortDescription</p>
+        <hr />
+    </div>
+}
+@Html.PagedListPager(Model, i => Url.Action("Index", "Home", new { i, search = Request.QueryString["search"] }),
+ new PagedListRenderOptions
+ {
+     DisplayLinkToIndividualPages = true,
+     DisplayPageCountAndCurrentLocation = false,
+     ContainerDivClasses = new string[] { "pagination-container" },
+     UlElementClasses = new string[] { "pagination" },
+     LiElementClasses = new string[] { "page-link" },
+ })
